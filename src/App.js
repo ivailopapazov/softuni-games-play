@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import CreateGame from './components/CreateGame/CreateGame';
 import Catalog from './components/Catalog/Catalog';
+import GameDetails from "./components/GameDetails/GameDetails";
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/create" element={<CreateGame />} />
                     <Route path="/catalog" element={<Catalog games={games}/>} />
+                    <Route path="/catalog/:gameId" element={<GameDetails />} />
                 </Routes>
             </main>
 
@@ -62,64 +64,6 @@ function App() {
                         <input className="btn submit" type="submit" defaultValue="Edit Game" />
                     </div>
                 </form>
-            </section> */}
-
-            {/*Details Page*/}
-            {/* <section id="game-details">
-                <h1>Game Details</h1>
-                <div className="info-section">
-                    <div className="game-header">
-                        <img className="game-img" src="images/MineCraft.png" />
-                        <h1>Bright</h1>
-                        <span className="levels">MaxLevel: 4</span>
-                        <p className="type">Action, Crime, Fantasy</p>
-                    </div>
-                    <p className="text">
-                        Set in a world where fantasy creatures live side by side with humans. A
-                        human cop is forced to work with an Orc to find a weapon everyone is
-                        prepared to kill for. Set in a world where fantasy creatures live side
-                        by side with humans. A human cop is forced to work with an Orc to find a
-                        weapon everyone is prepared to kill for.
-                    </p>
-
-                    <div className="details-comments">
-                        <h2>Comments:</h2>
-                        <ul>
-                            <li className="comment">
-                                <p>Content: I rate this one quite highly.</p>
-                            </li>
-                            <li className="comment">
-                                <p>Content: The best game.</p>
-                            </li>
-                        </ul>
-                        <p className="no-comment">No comments.</p>
-                    </div>
-
-                    <div className="buttons">
-                        <a href="#" className="button">
-                            Edit
-                        </a>
-                        <a href="#" className="button">
-                            Delete
-                        </a>
-                    </div>
-                </div>
-
-                <article className="create-comment">
-                    <label>Add new comment:</label>
-                    <form className="form">
-                        <textarea
-                            name="comment"
-                            placeholder="Comment......"
-                            defaultValue={""}
-                        />
-                        <input
-                            className="btn submit"
-                            type="submit"
-                            defaultValue="Add Comment"
-                        />
-                    </form>
-                </article>
             </section> */}
         </div>
     );
