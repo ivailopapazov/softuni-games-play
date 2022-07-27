@@ -1,7 +1,37 @@
+import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
+
+import * as authService from "../../services/authService";
+import { AuthContext } from "../../contexts/AuthContext";
+
+
 const Register = () => {
+    const { userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const email = formData.get('email');
+        const password = formData.get('password');
+        const confirmPassword = formData.get('confirm-password');
+
+        if (password !== confirmPassword) {
+            return;
+        }
+
+        authService.register(email, password)
+            .then(authData => {
+                userLogin(authData);
+                navigate('/');
+            });
+    }
+
     return (
         <section id="register-page" className="content auth">
-            <form id="register">
+            <form id="register" onSubmit={onSubmit}>
                 <div className="container">
                     <div className="brand-logo" />
                     <h1>Register</h1>
