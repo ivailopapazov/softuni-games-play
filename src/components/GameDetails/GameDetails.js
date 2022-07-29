@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { GameContext } from '../../contexts/GameContext';
 
 import * as gameService from '../../services/gameService';
 
-const GameDetails = ({
-    addComment,
-}) => {
+const GameDetails = () => {
+    const { addComment } = useContext(GameContext);
     const { gameId } = useParams();
     const [currentGame, setCurrentGame] = useState({});
 
@@ -46,8 +46,8 @@ const GameDetails = ({
         let errorMessage = '';
 
         if (username.length < 4) {
-          errorMessage = 'Username must be longer than 4 characters';
-        } else if ( username.length > 10) {
+            errorMessage = 'Username must be longer than 4 characters';
+        } else if (username.length > 10) {
             errorMessage = 'Username must be shorter than 10 characters';
         }
 
@@ -108,8 +108,8 @@ const GameDetails = ({
                         value={comment.username}
                     />
 
-                    {error.username && 
-                        <div style={{color: 'red'}}>{error.username}</div>
+                    {error.username &&
+                        <div style={{ color: 'red' }}>{error.username}</div>
                     }
 
                     <textarea
