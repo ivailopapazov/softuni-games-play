@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { GameProvider } from './contexts/GameContext';
 import PrivateRoute from "./components/common/PrivateRoute";
-import PrivateGuard from "./components/common/PrivateGuard";
 
 import Header from './components/Header/Header';
 import Home from './components/Home';
@@ -15,6 +14,7 @@ import EditGame from './components/EditGame/EditGame';
 import Catalog from './components/Catalog/Catalog';
 import GameDetails from "./components/GameDetails/GameDetails";
 import './App.css';
+import GameOwner from "./components/common/GameOwner";
 
 const Register = lazy(() => import('./components/Register/Register'));
 
@@ -40,8 +40,10 @@ function App() {
                                     <CreateGame />
                                 </PrivateRoute>
                             )} />
-                            <Route element={<PrivateGuard />}>
+                            <Route element={<GameOwner />}>
                                 <Route path="/games/:gameId/edit" element={<EditGame />} />
+                            </Route>
+                            <Route element={<PrivateRoute />}>
                                 <Route path="/logout" element={<Logout />} />
                             </Route>
                             <Route path="/catalog" element={<Catalog />} />
